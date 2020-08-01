@@ -1,94 +1,26 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+ <div id="background" class="background">
+   <button style="float:right;margin-right:10%;margin-top:3%" @click="changebackgroundimg">修改图片</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      number: 0,
+      picture: ['/static/picture/72441709_p0.png', '/static/picture/81046044_p0.png', '/static/picture/79583564_p0.png']
+    }
+  },
+  methods: {
+    changebackgroundimg() {
+      document.getElementById('background').style.backgroundImage = "url(" + this.picture[this.number] + ")";
+      this.number++;
+      if (this.number > 2){
+        this.number = 0;
+      }
     }
   }
 }
@@ -98,6 +30,16 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+.background{
+  height: 100%;
+  width: 100%;
+  background-image: url('/static/picture/79583564_p0.png');
+  position: absolute;             /* 绝对定位，必要 */
+  background-size:cover;          /* 图片拉伸覆盖，这个词条非常方便 */
+  /*background-repeat:no-repeat;  图片不重复
+  background-attachment: fixed;   图片不平铺，随动
+  filter:blur(1px);               背景虚化，值越大越模糊 */
 }
 ul {
   list-style-type: none;
